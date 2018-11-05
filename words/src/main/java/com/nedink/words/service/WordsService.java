@@ -26,13 +26,48 @@ public class WordsService {
             wordStream = reader.lines();
 
             return wordStream.count();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             if (inputStream != null) {
                 try {
                     inputStream.close();
-                } catch (IOException e) {
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        return -1;
+    }
+
+    public long getCountByRegex(String regex) {
+        InputStream inputStream = null;
+
+        try {
+            File file = new File(getClass()
+                    .getClassLoader()
+                    .getResource("words.txt").getFile());
+            inputStream = new FileInputStream(file);
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+
+            Stream<String> wordStream = reader.lines();
+            Stream<String> matches = wordStream.filter(word -> word.matches(regex));
+            return Arrays.asList(matches.toArray()).size();
+
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (inputStream != null) {
+                try {
+                    inputStream.close();
+                }
+                catch (IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -45,7 +80,7 @@ public class WordsService {
         InputStream inputStream = null;
 
         try {
-            
+
             File file = new File(getClass()
                     .getClassLoader()
                     .getResource("words.txt").getFile());
@@ -56,13 +91,16 @@ public class WordsService {
             Stream<String> matches = wordStream.filter(word -> word.matches(regex));
             return Arrays.asList(matches.toArray());
 
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             if (inputStream != null) {
                 try {
                     inputStream.close();
-                } catch (IOException e) {
+                }
+                catch (IOException e) {
                     e.printStackTrace();
                 }
             }

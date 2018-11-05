@@ -1,0 +1,4 @@
+applications:
+- name: words
+  path: build/libs/words-1.0.0.jar
+  route: words

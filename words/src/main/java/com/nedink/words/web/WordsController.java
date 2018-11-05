@@ -30,4 +30,10 @@ public class WordsController {
         List<String> result = wordsService.getByRegex(regex);
         return new ResponseEntity(result, HttpStatus.OK);
     }
+
+    @GetMapping(value = "/count", params = "regex")
+    public ResponseEntity getCountByRegex(@RequestParam String regex) {
+        long result = wordsService.getCountByRegex(regex);
+        return new ResponseEntity(result, HttpStatus.OK);
+    }
 }
