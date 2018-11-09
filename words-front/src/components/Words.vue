@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="input-area">
-      <input class="regex-input" type="text" v-model="input">
-      <button class="submit">Search</button>
+      <input id="regex-input" class="regex-input" type="text" v-model="input" @keypress="keyPress($event)">
+      <button class="submit" @click="fetchWords()">Search</button>
     </div>
     <div class="result">
       <table>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-const BACKEND = 'https://api.words-back.cfapps.io'
+const API = 'http://api.words-back.cfapps.io'
 
 export default {
   data() {
@@ -25,12 +25,19 @@ export default {
     }
   },
   mounted() {
-
+    document.getElementById('regex-input').focus();
   },
   methods: {
+    keyPress(event) {
+      if (event.key === "Enter")
+        this.fetchWords();
+    },
     fetchWords() {
-      fetch(BACKEND + '/words?regex=' + new RegExp(this.input))
-      this.words = null;
+      fetch(API + '/words?regex=' + new RegExp(this.input)).then(resp => {
+        resp.json().then(resp => {
+          this.words = resp;
+        })
+      });
     }
   }
 }

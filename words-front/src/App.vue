@@ -18,11 +18,21 @@ export default {
 <style>
 * {
   box-sizing: border-box;
-  color: #cdcfe0;
+  color: var(--text-color);
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
 }
 :root {
-  background-color: #2c3e50;
+  
+  /* VARS ----------------------------------------- */
+  --background-color: #2c3e50;
+  --background-color-darker: #1f252b;
+  --text-color: #cdcfe0;
+  --text-color-lighter: #f1f1f7;
+  --highlight-color: #00ff4c80;
+  --border-radius: 6px;
+  /* ---------------------------------------------- */
+  
+  background-color: var(--background-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -30,27 +40,28 @@ export default {
 }
 *:focus {
   transition-duration: 100ms;
-  box-shadow: 0 0 0 4px #00ff0080;
-  color: #f1f1f7;
+  box-shadow: 0 0 0 4px var(--highlight-color);
+  color: var(--text-color-lighter);
 }
 *:hover {
-  color: #f1f1f7;
+  color: var(--text-color-lighter);
 }
 input {
   font-size: 1rem;
-  background-color: #1f252b;
-    color: #f1f1f7;
-border: none;
-  border-radius: 0.25rem;
+  font-weight: 400;
+  background-color: var(--background-color-darker);
+  color: var(--text-color-lighter);
+  border: none;
+  border-radius: var(--border-radius);
   outline: none;
   height: 38px;
-  padding: 0.5rem;
+  padding: 0.5rem 0.75rem;
 }
 button {
   font-size: 1rem;
-  background-color: #1f252b;
+  background-color: var(--background-color-darker);
   border: none;
-  border-radius: 0.25rem;
+  border-radius: var(--border-radius);
   outline: none;
   cursor: pointer;
   height: 38px;

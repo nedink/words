@@ -15,7 +15,6 @@ public class WordsService {
 
     public long getCount() {
         InputStream inputStream = null;
-        Stream<String> wordStream = null;
 
         try {
             File file = new File(getClass()
@@ -23,7 +22,7 @@ public class WordsService {
                     .getResource("words.txt").getFile());
             inputStream = new FileInputStream(file);
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-            wordStream = reader.lines();
+            Stream<String> wordStream = reader.lines();
 
             return wordStream.count();
         }
